@@ -1,4 +1,5 @@
 let canvas;
+let URL = 'https://catfact.ninja/fact';
 
 function setup() {
     frameRate(60);
@@ -7,10 +8,14 @@ function setup() {
     canvas.style('position', 'fixed');
     canvas.style('top', '0');
     canvas.style('right', '0');
+    console.log(fetch(URL).then(response => response.json()));
+    fetch(URL)
+        .then(response => response.json())
+        .then(data => {catFact = data 
+            console.log(catFact.fact)})
 }
 
 function draw() {
-    //background(0, 50);
     background(0);
     newCursor();
     
