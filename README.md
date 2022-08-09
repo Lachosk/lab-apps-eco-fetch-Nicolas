@@ -4,5 +4,5 @@
 - https://dog.ceo/api/breeds/image/random
 - https://catfact.ninja/fact
 
-## API usada:
+## API usada
 - https://randomuser.me/api/
