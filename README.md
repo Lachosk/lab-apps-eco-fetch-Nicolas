@@ -1,7 +1,8 @@
-# API'S usadas para este lab:
-## Usare las siguentes API'S:
-- https://randomuser.me/api/
+# API'S de referencia para este lab:
 - https://api.coindesk.com/v1/bpi/currentprice.json
 - https://datausa.io/api/data?drilldowns=Nation&measures=Population
 - https://dog.ceo/api/breeds/image/random
 - https://catfact.ninja/fact
+
+## API usada:
+- https://randomuser.me/api/
