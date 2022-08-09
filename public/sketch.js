@@ -1,5 +1,6 @@
 let canvas;
 let URL = 'https://catfact.ninja/fact';
+let catFact = null;
 
 function setup() {
     frameRate(60);
@@ -18,6 +19,14 @@ function setup() {
 function draw() {
     background(0);
     newCursor();
+    
+    if(catFact != null){
+        fill(255);
+        textSize(20);
+        textWrap(WORD);
+        text(catFact.fact, 100, 100)
+        
+    }
     
 }
 
