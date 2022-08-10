@@ -53,7 +53,6 @@ function setup() {
         .then(response => response.json())
         .then(data => {
             dataNation = data
-            console.log(data.source[0].annotations.source_name)
         });
 
 
@@ -93,6 +92,13 @@ function setup() {
                 console.log(dataUser.results[0].name.first)
                 console.log(dataUser.results[0].name.last)
             });
+
+        fetch(URL5)
+            .then(response => response.json())
+            .then(data => {
+                dataNation = data
+                console.log(dataNation.source[0].annotations.source_name)
+            });
     }
 }
 
@@ -124,6 +130,10 @@ function draw() {
     if (dataUser != null) {
         fill(0, 255, 255)
         text(dataUser.results[0].name.first + " " + dataUser.results[0].name.last, 700, 400, 300)
+    }
+    if (dataNation != null) {
+        fill(255, 0, 255)
+        text(dataNation.source[0].annotations.source_name, 700, 600, 300)
     }
 
 }
