@@ -19,7 +19,7 @@ function setup() {
     canvas.style('right', '0');
 
     console.log(fetch(URL1).then(response => response.json()));
-   
+
     fetch(URL1)
         .then(response => response.json())
         .then(data => {
@@ -27,24 +27,57 @@ function setup() {
             console.log(data)
             console.log(catFact.fact)
         })
+    fetch(URL2)
+        .then(response => response.json())
+        .then(data => {
+            dogImg = data
+            console.log(data)
+            img = loadImage(dogImg.message);
+        });
+
+
+
+    fetchData = () => {
+        fetch(URL1)
+            .then(response => response.json())
+            .then(data => {
+                catFact = data
+                console.log(data)
+                console.log(catFact.fact)
+            })
+
+        fetch(URL2)
+            .then(response => response.json())
+            .then(data => {
+                dogImg = data
+                console.log(data)
+                img = loadImage(dogImg.message);
+            });
+    }
 }
 
 function draw() {
     background(0);
     newCursor();
 
-    if (catFact != null) {
-        fill(255);
-        textSize(20);
-        textWrap(WORD);
-        text(catFact.fact, 100, 100,300)
+    fill(255);
+    textSize(20);
+    textWrap(WORD);
+    text("Click para cambiar", 500, 500, 300)
 
+    if (catFact != null) {
+        fill(255, 255, 0)
+        text(catFact.fact, 100, 100, 300)
+    }
+
+    if (dogImg != null) {
+        image(img, windowWidth / 2, 0, 300, 300);
     }
 
 }
 
 function mouseClicked() {
-
+    fetchData();
 }
 
 function windowResized() {

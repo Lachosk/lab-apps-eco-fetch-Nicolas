@@ -6,3 +6,4 @@
 
 ## API usada
 - https://randomuser.me/api/
+- https://dog.ceo/api/breeds/image/random
