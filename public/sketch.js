@@ -2,13 +2,15 @@ let canvas;
 
 let URL1 = 'https://catfact.ninja/fact';
 let URL2 = 'https://dog.ceo/api/breeds/image/random'
+let URL3 = 'https://api.coindesk.com/v1/bpi/currentprice.json';
+
 
 let img;
 
 let catFact = null;
 let dogImg = null;
-let doggy = null;
-let bringImg = false;
+let bitcoin = null;
+
 
 function setup() {
     frameRate(60);
@@ -18,7 +20,6 @@ function setup() {
     canvas.style('top', '0');
     canvas.style('right', '0');
 
-    console.log(fetch(URL1).then(response => response.json()));
 
     fetch(URL1)
         .then(response => response.json())
@@ -35,7 +36,16 @@ function setup() {
             img = loadImage(dogImg.message);
         });
 
-
+    fetch(URL3)
+        .then(response => response.json())
+        .then(data => {
+            bitcoin = data
+            console.log(data)
+            console.log(bitcoin.time.updated);
+            console.log(bitcoin.chartName)
+            console.log(bitcoin.bpi.USD.code)
+            console.log(bitcoin.bpi.USD.rate)
+        });
 
     fetchData = () => {
         fetch(URL1)
@@ -52,6 +62,17 @@ function setup() {
                 dogImg = data
                 console.log(data)
                 img = loadImage(dogImg.message);
+            });
+
+        fetch(URL3)
+            .then(response => response.json())
+            .then(data => {
+                bitcoin = data
+                console.log(data)
+                console.log(bitcoin.time.updated);
+                console.log(bitcoin.chartName)
+                console.log(bitcoin.bpi.USD.code)
+                console.log(bitcoin.bpi.USD.rate)
             });
     }
 }
@@ -72,6 +93,14 @@ function draw() {
 
     if (dogImg != null) {
         image(img, windowWidth / 2, 0, 300, 300);
+    }
+
+    if (bitcoin != null) {
+        fill(0, 255, 0)
+        text(bitcoin.chartName, 100, 700, 300)
+        text("Fecha: " + bitcoin.time.updated, 100, 750, 300)
+        text("Moneda: " + bitcoin.bpi.USD.code, 100, 800, 300)
+        text("Precio: " + bitcoin.bpi.USD.rate, 100, 850, 300)
     }
 
 }
