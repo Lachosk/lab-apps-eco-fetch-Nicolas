@@ -1,4 +1,0 @@
-class Button {
-    constructor()
-
-}
