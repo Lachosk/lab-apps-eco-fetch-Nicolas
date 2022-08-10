@@ -4,6 +4,7 @@ let URL1 = 'https://catfact.ninja/fact';
 let URL2 = 'https://dog.ceo/api/breeds/image/random'
 let URL3 = 'https://api.coindesk.com/v1/bpi/currentprice.json';
 let URL4 = 'https://randomuser.me/api/'
+let URL5 = 'https://datausa.io/api/data?drilldowns=Nation&measures=Population'
 
 
 let img;
@@ -12,6 +13,7 @@ let catFact = null;
 let dogImg = null;
 let bitcoin = null;
 let dataUser = null;
+let dataNation = null;
 
 function setup() {
     frameRate(60);
@@ -46,6 +48,14 @@ function setup() {
         .then(data => {
             dataUser = data
         });
+
+    fetch(URL5)
+        .then(response => response.json())
+        .then(data => {
+            dataNation = data
+            console.log(data.source[0].annotations.source_name)
+        });
+
 
     fetchData = () => {
         fetch(URL1)
